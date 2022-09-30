@@ -4,12 +4,14 @@ import com.pendency.project.models.entities.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class PaymentTransactionService {
 
   @Autowired
@@ -20,6 +22,7 @@ public class PaymentTransactionService {
       tagService.saveTag(new Tag(id, hierarchicalTags.get(i), i));
     }
   }
+
 
   public void stopTracking(Integer id){
     tagService.deleteTag(id);
